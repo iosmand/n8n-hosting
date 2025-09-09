@@ -32,7 +32,7 @@ x-shared: &shared
 
 services:
   postgres:
-    name: postgres
+    container_name: postgres
     image: postgres:16
     restart: always
     env_file:
@@ -53,7 +53,7 @@ services:
       retries: 10
 
   redis:
-    name: redis
+    container_name: redis
     image: redis:6-alpine
     restart: always
     env_file:
@@ -67,6 +67,7 @@ services:
       retries: 10
 
   cloudflared-tunnel:
+      container_name: cloudflare-tunnel
       image: cloudflare/cloudflared:latest
       restart: always
       env_file:
@@ -76,11 +77,11 @@ services:
         - TUNNEL_TOKEN=${TUNNEL_TOKEN}
 
   n8n:
-    name: n8n
+    container_name: n8n
     <<: *shared
 
   n8n-worker:
-    name: n8n-worker
+    container_name: n8n-worker
     <<: *shared
     command: worker
     depends_on:
