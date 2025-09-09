@@ -67,7 +67,6 @@ services:
       retries: 10
 
   cloudflared-tunnel:
-      name: cloudflare-tunnel
       image: cloudflare/cloudflared:latest
       restart: always
       env_file:
